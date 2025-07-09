@@ -568,3 +568,14 @@ img, video {
   max-width: 100%;
   height: auto;
 }
+/* Garante que o header e as setas do carrossel fiquem sempre acima */
+header {
+  z-index: 999;
+}
+.carousel-container {
+  position: relative;
+  z-index: 998;
+}
+.prev, .next {
+  z-index: 999;
+}
