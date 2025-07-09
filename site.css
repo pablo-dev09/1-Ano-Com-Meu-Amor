@@ -1,1 +1,489 @@
-body { background: black; color: white; font-family: Orbitron, sans-serif; } /* (restante do estilo omitido por simplificação) */
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  color: #ffffff;
+  background-color: transparent;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  background: #0d0d1a; /* fundo escuro */
+}
+
+/* Fundo animado - canvas */
+#star-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0d0d1a;
+  z-index: -1;
+}
+
+/* Header e navegação */
+header {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+  from { top: -60px; opacity: 0; }
+  to { top: 0; opacity: 1; }
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2rem;
+}
+
+nav ul li a {
+  color: #00bfff;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+}
+
+nav ul li a:hover {
+  color: #ffffff;
+}
+
+/* Seções principais */
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 100px;
+  padding-bottom: 60px;
+  text-align: center;
+  background-color: transparent;
+  scroll-margin-top: 80px;
+}
+
+/* Cards do Home */
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 80px;
+}
+
+.card {
+  width: 260px;
+  height: 380px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 170, 255, 0.7);
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card-text {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  font-style: italic;
+  color: #fff;
+  font-size: 16px;
+  padding: 0 10px;
+  text-shadow: 0 0 5px rgba(0,0,0,0.6);
+  pointer-events: none;
+}
+
+/* Contador de dias */
+.contador-container {
+  margin-top: 60px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #00aaff;
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Carrossel */
+.carousel-container {
+  position: relative;
+  width: 480px;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+  flex-shrink: 0;
+  margin-top: -20vh;
+}
+
+.carousel-slide {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+}
+
+.carousel-slide img {
+  width: 480px;
+  height: 320px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 0 8px #00bfff;
+  transition: transform 0.2s;
+}
+
+.prev:hover, .next:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+/* Layout da seção About */
+.about-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 60px;
+  gap: 40px;
+}
+
+.frase-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin-top: -20vh;
+}
+
+#fraseBtn {
+  background-color: #00bfff;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  min-width: 280px;
+  text-align: center;
+}
+
+#fraseBtn:hover {
+  background-color: #3399ff;
+}
+
+/* Joguinho do Amor - quiz */
+#quiz {
+  margin-top: -30vh;
+}
+
+#perguntaBox {
+  background: rgba(255, 255, 255, 0.07);
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: 30px auto;
+  box-shadow: 0 0 15px rgba(0, 170, 255, 0.4);
+  animation: fadeIn 0.5s ease;
+}
+
+#pergunta {
+  font-size: 22px;
+  font-weight: bold;
+  color: #004080;
+  margin-bottom: 20px;
+}
+
+#opcoes button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  margin: 10px 5px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+#opcoes button:hover {
+  background-color: #00aaff;
+  transform: scale(1.05);
+}
+
+#feedback {
+  font-size: 18px;
+  margin-top: 20px;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+}
+
+/* Mapa dos sonhos */
+.mapa-sonhos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.destino {
+  background-color: rgba(0, 122, 204, 0.08);
+  border: 2px dashed #00aaff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 220px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destino:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 170, 255, 0.4);
+}
+
+.destino h3 {
+  color: #0077cc;
+  margin-bottom: 10px;
+}
+
+.destino p {
+  color: #f4f4f4;
+  font-size: 15px;
+}
+
+.pin {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-align: center;
+  padding: 30px 0;
+  width: 100%;
+}
+
+.footer-link {
+  background-color: #00bfff;
+  color: #ffffff;
+  padding: 13px 25px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 12px;
+  display: inline-block;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.footer-link:hover {
+  background-color: #3399ff;
+  transform: scale(1.1);
+}
+
+/* Botão voltar ao topo */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #00bfff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+  padding: 10px;
+}
+
+.seta-img {
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.back-to-top:hover {
+  transform: scale(1.1);
+  background-color: #3399ff;
+}
+
+/* Áudio */
+audio {
+  margin-left: 20px;
+  height: 40px;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 5px #00aaff);
+}
+
+/* Media Queries Responsivos */
+@media (max-width: 1024px) {
+  .carousel-container {
+    width: 90vw;
+    height: auto;
+  }
+  .carousel-slide img {
+    width: 100%;
+    height: auto;
+  }
+  .about-layout {
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 20px;
+  }
+  .frase-container {
+    margin-top: 0;
+  }
+  .mapa-sonhos {
+    flex-direction: column;
+    align-items: center;
+  }
+  .destino {
+    width: 90%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  nav ul li {
+    margin: 0.5rem 0;
+  }
+  .content {
+    padding: 0 10px;
+  }
+  #perguntaBox {
+    max-width: 90%;
+  }
+  footer {
+    flex-direction: column;
+    padding: 20px;
+  }
+  audio {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+  .back-to-top img {
+    width: 90%;
+  }
+  #opcoes button {
+    width: 100%;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 430px) {
+  h1, h2, h3 {
+    font-size: 1.5rem;
+  }
+  p, button, .footer-link {
+    font-size: 1rem;
+  }
+  .carousel-container {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .carousel-slide {
+    flex-direction: column;
+  }
+  .destino p {
+    font-size: 14px;
+  }
+  .section {
+    padding: 80px 10px 60px;
+  }
+  .mapa-sonhos {
+    padding: 0 10px;
+  }
+}
