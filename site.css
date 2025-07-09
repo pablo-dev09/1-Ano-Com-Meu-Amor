@@ -241,6 +241,8 @@ footer {
   min-width: 280px;
   text-align: center;
 }
+
+/* Cards */
 .card-row {
   display: flex;
   justify-content: center;
@@ -310,6 +312,7 @@ footer {
     transform: translateY(0);
   }
 }
+
 audio {
   margin-left: 20px;
   height: 40px;
@@ -317,9 +320,11 @@ audio {
   filter: drop-shadow(0 0 5px #00aaff);
 }
 
-#quiz{
+/* Quiz */
+#quiz {
   margin-top: -30vh;
 }
+
 #perguntaBox {
   background: rgba(255, 255, 255, 0.07);
   padding: 30px;
@@ -360,6 +365,8 @@ audio {
   transition: opacity 0.3s ease;
   font-weight: bold;
 }
+
+/* Mapa dos sonhos */
 .mapa-sonhos {
   display: flex;
   flex-wrap: wrap;
@@ -408,6 +415,8 @@ audio {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Responsivo geral e para iPhone 15 Pro Max / Samsung A54 */
 @media (max-width: 1024px) {
   .carousel-container {
     width: 90vw;
@@ -489,34 +498,73 @@ audio {
   }
 }
 
-@media (max-width: 430px) {
-  h1, h2, h3 {
-    font-size: 1.5rem;
+/* Ajustes específicos iPhone 15 Pro Max e Galaxy A54 */
+@media only screen and (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
+  .card-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
   }
 
-  p, button, .footer-link {
-    font-size: 1rem;
+  .card {
+    width: 90%;
+    max-width: 320px;
+    height: auto;
   }
 
   .carousel-container {
     width: 100%;
+    height: auto;
     border-radius: 0;
     box-shadow: none;
+    margin-top: 0;
   }
 
-  .carousel-slide {
-    flex-direction: column;
-  }
-
-  .destino p {
-    font-size: 14px;
-  }
-
-  .section {
-    padding: 80px 10px 60px;
+  .carousel-slide img {
+    width: 100%;
+    height: auto;
   }
 
   .mapa-sonhos {
+    flex-direction: column;
+    gap: 15px;
     padding: 0 10px;
   }
+
+  .destino {
+    width: 100%;
+    padding: 15px;
+  }
+
+  footer audio {
+    width: 100%;
+    margin: 10px 0 0;
+  }
+
+  .footer-link {
+    display: block;
+    width: 80%;
+    margin: 0 auto 10px;
+    padding: 12px 0;
+  }
+
+  .back-to-top {
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  #opcoes button {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 18px;
+    margin: 8px 0;
+  }
+}
+
+/* Garante que imagens e vídeos sejam fluidos */
+img, video {
+  max-width: 100%;
+  height: auto;
 }
