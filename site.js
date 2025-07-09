@@ -1,0 +1,1 @@
+// JS do fundo, carrossel, contador e quiz com respostas corretas em verde e erradas em vermelho (completo na próxima etapa)
