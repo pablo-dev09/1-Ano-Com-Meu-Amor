@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const inicio = new Date("2024-07-09T00:00:00");
   const hoje = new Date();
-  const dias = Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24));
+  const dias = Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24)) - 1;
   const contadorSpan = document.getElementById("contadorDias");
 
   let atual = 0;
@@ -23,7 +23,7 @@ const nextBtn = document.querySelector('.next');
 let counter = 0;
 
 function updateCarousel() {
-  const width = images[0].clientWidth;
+  const width = slide.clientWidth;
   slide.style.transform = `translateX(-${counter * width}px)`;
 }
 
