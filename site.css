@@ -167,62 +167,74 @@ footer {
   background-color: #3399ff;
 }
 
-/* -------- Carrossel -------- */
 .carousel-container {
-  position: relative;
   width: 100%;
-  max-width: 100vw;
-  overflow: hidden;        /* esconde imagens extras */
-  margin: 0 auto;
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
   border-radius: 20px;
 }
 
 .carousel-slide {
   display: flex;
-  width: calc(100% * 3);   /* 3 imagens */
   transition: transform 0.5s ease-in-out;
+  width: 100%;
 }
 
 .carousel-slide img {
-  flex: 0 0 100%;          /* cada imagem ocupa 100% do container */
   width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 20px;
 }
 
-/* Botões Prev/Next */
+/* Responsivo */
+@media (max-width: 768px) {
+  .carousel-container {
+    max-width: 90%;
+    height: auto;
+  }
+
+  .carousel-slide img {
+    height: auto;
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slide img {
+    max-height: 300px;
+  }
+}
+
+/* Botões do carrossel */
 .prev, .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background-color: #00bfff;
-  color: #fff;
+  color: white;
   border: none;
-  font-size: 1.8rem;
-  padding: 10px;
+  font-size: 24px;
+  padding: 10px 14px;
   border-radius: 50%;
   cursor: pointer;
   z-index: 10;
-  transition: background-color 0.3s;
 }
 
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
   background-color: #008ecc;
+  transform: scale(1.1);
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
+.prev {
+  left: 10px;
+}
 
-/* Responsivo */
-@media (max-width: 768px) {
-  .carousel-slide img {
-    object-fit: contain;
-  }
-  .prev, .next {
-    font-size: 1.5rem;
-    padding: 8px;
-  }
+.next {
+  right: 10px;
 }
 
 .about-layout {
