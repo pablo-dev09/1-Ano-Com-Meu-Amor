@@ -1,0 +1,87 @@
+body {
+  font-family: 'Orbitron', sans-serif;
+  color: #ffffff;
+  background-color: transparent;
+  line-height: 1.6;
+}
+
+.card-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 260px;
+  height: 380px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-text {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.contador-container {
+  margin-top: 40px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #00aaff;
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 320px;
+  overflow: hidden;
+  margin: 40px auto 0;
+}
+
+.carousel-slide {
+  display: flex;
+  width: 300%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.footer-link {
+  font-size: 16px;
+}
