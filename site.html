@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A + P</title>
+  <link rel="stylesheet" href="site.css"/>
+</head>
+<body>
+  <canvas id="star-canvas"></canvas>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Início</a></li>
+        <li><a href="#about">Sobre Nós</a></li>
+        <li><a href="#quiz">Joguinho</a></li>
+        <li><a href="#mapa">Mapa Dos Sonhos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="section">
+
+    <!-- Cards enfileirados -->
+    <div class="card-row">
+      <div class="card">
+        <img src="photo1.jpg" alt="Casal 1">
+        <div class="card-text">"Com você, até o silêncio é poesia."</div>
+      </div>
+      <div class="card">
+        <img src="photo 2.jpg" alt="Casal 2">
+        <div class="card-text">"Seu sorriso é meu lugar favorito."</div>
+      </div>
+      <div class="card">
+        <img src="photo 3.jpg" alt="Casal 3">
+        <div class="card-text">"Te encontrar foi como ver o céu estrelado pela primeira vez."</div>
+      </div>
+    </div>
+  
+    <!-- Contador de Dias animado -->
+    <div class="contador-container">
+      <p>Estamos juntos há <span id="contadorDias">0</span> dias 💙</p>
+    </div>
+  
+  </section>
+
+  <section id="about" class="section about-layout">
+    <div class="carousel-container">
+      <div class="carousel-slide">
+        <img src="foto1.jpg" alt="Imagem 1">
+        <img src="foto2.jpg" alt="Imagem 2">
+        <img src="foto3.jpg" alt="Imagem 3">
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+
+    <div class="frase-container">
+      <button id="fraseBtn">Clique para ver uma frase</button>
+    </div>
+  </section>
+
+  <section id="quiz" class="section">
+    <div class="content">
+      <h2>💘 Joguinho do Amor 💘</h2>
+      <div id="perguntaBox">
+        <p id="pergunta">Pergunta aparecerá aqui...</p>
+        <div id="opcoes"></div>
+        <p id="feedback"></p>
+      </div>
+    </div>
+  </section>
+
+      <section id="mapa" class="section">
+        <div class="content">
+          <h2>🌍 Mapa dos Sonhos do Amor</h2>
+          <div class="mapa-sonhos">
+            <div class="destino">
+              <span class="pin">📍</span>
+              <h3>Inglaterra</h3>
+              <p>Visitar Liverpool por conta dos Beatles e Londres para conhecer de perto a Royal Ballet School.</p>
+            </div>
+            <div class="destino">
+              <span class="pin">📍</span>
+              <h3>Campos Do Jordão</h3>
+              <p>Lugar com uma cultura bastante legal e comidas diversas</p>
+            </div>
+            <div class="destino">
+              <span class="pin">📍</span>
+              <h3>Fernando De Noronha</h3>
+              <p>Promessa de mergulho nas águas cristalinas.</p>
+            </div>
+            <div class="destino">
+              <span class="pin">📍</span>
+              <h3>Parintins</h3>
+              <p>Visitar o festival que você tanto gosta</p>
+            </div>
+            <div class="destino">
+              <span class="pin">📍</span>
+              <h3>Veneza</h3>
+              <p>Passear de gôndola com serenata ao pôr do sol.</p>
+            </div>
+            <div class="destino">
+              <span class="pin">📍</span>
+              <h3>Rússia</h3>
+              <p>Conhecer mais a cultura interessante do local e também conhecer a Bolshoi Ballet Academy</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+
+  <footer class="footer"> 
+    <a class="footer-link" href="video.html" target="_blank">Surpresa</a>
+    <!-- Música de fundo -->
+  <audio id="bgMusic" controls autoplay loop>
+    <source src="música.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+  </footer>
+
+  <button onclick="scrollToSection('home')" class="back-to-top">
+    <img src="seta-branca.png" alt="Seta para cima" class="seta-img" />
+  </button>
+
+  <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+
+  <script src="site.js"></script>
+</body>
+</html>
