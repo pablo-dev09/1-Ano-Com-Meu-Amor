@@ -1,3 +1,4 @@
+// Scroll suave
 function scrollToSection(id) {
   const section = document.getElementById(id);
   if (section) {
@@ -5,7 +6,7 @@ function scrollToSection(id) {
   }
 }
 
-// Frases
+// Frases do botão
 const frases = [
   "Eu te valorizo", "Eu te encho de carinho", "Eu te abraço com o olhar",
   "Eu te levo no coração", "Eu te escrevo poesias", "Eu te busco na memória",
@@ -15,26 +16,36 @@ const frases = [
   "Eu te encontro nos detalhes", "Eu te abraço na alma", "Eu te conto estrelas"
 ];
 
-let index = 0;
+let fraseIndex = 0;
+
+// Carrossel com 100%
+let slideIndex = 0;
+
 document.addEventListener("DOMContentLoaded", () => {
+  // Botão de frases
   const btn = document.getElementById('fraseBtn');
   if (btn) {
     btn.addEventListener('click', () => {
-      btn.textContent = frases[index];
-      index = (index + 1) % frases.length;
+      btn.textContent = frases[fraseIndex];
+      fraseIndex = (fraseIndex + 1) % frases.length;
     });
   }
 
   // Som de clique
   const clickSound = document.getElementById("click-sound");
   document.addEventListener("click", function (e) {
-    if (clickSound && (e.target.tagName === "BUTTON" || e.target.closest("button") || e.target.classList.contains("footer-link"))) {
+    if (
+      clickSound &&
+      (e.target.tagName === "BUTTON" ||
+       e.target.closest("button") ||
+       e.target.classList.contains("footer-link"))
+    ) {
       clickSound.currentTime = 0;
       clickSound.play();
     }
   });
 
-  // Fundo de estrelas animado
+  // Estrelas animadas
   const canvas = document.getElementById('star-canvas');
   const ctx = canvas.getContext('2d');
   let stars = [];
@@ -43,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
+
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
@@ -77,44 +89,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   createStars();
   animateStars();
-});
 
-// Carrossel
-const slide = document.querySelector('.carousel-slide');
-const images = document.querySelectorAll('.carousel-slide img');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
-let counter = 0;
+  // Carrossel
+  const slide = document.querySelector('.carousel-slide');
+  const images = document.querySelectorAll('.carousel-slide img');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
 
-if (nextBtn && prevBtn && slide && images.length > 0) {
-  nextBtn.addEventListener('click', () => {
-    counter = (counter + 1) % images.length;
+  if (nextBtn && prevBtn && slide && images.length > 0) {
+    nextBtn.addEventListener('click', () => {
+      slideIndex = (slideIndex + 1) % images.length;
+      updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      slideIndex = (slideIndex - 1 + images.length) % images.length;
+      updateCarousel();
+    });
+
+    function updateCarousel() {
+      slide.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
     updateCarousel();
-  });
-
-  prevBtn.addEventListener('click', () => {
-    counter = (counter - 1 + images.length) % images.length;
-    updateCarousel();
-  });
-
-  function updateCarousel() {
-    slide.style.transform = `translateX(-${counter * 480}px)`;
   }
-}
-function scrollToSection(id) {
-  const section = document.getElementById(id);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth" });
-  }
-}
 
-document.addEventListener("DOMContentLoaded", () => {
+  // Contador de dias juntos
   const inicio = new Date("2024-07-09");
   const hoje = new Date();
   const dias = Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24));
   const contadorSpan = document.getElementById("contadorDias");
 
-  // Anima a contagem do número
   let atual = 0;
   const intervalo = setInterval(() => {
     if (atual < dias) {
@@ -123,8 +128,13 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       clearInterval(intervalo);
     }
-  }, 25); // velocidade da animação
+  }, 25);
+
+  // Quiz
+  mostrarPergunta();
 });
+
+// Quiz
 const quizPerguntas = [
   {
     pergunta: "Qual a comida favorita do Pablo?",
@@ -183,7 +193,3 @@ function verificarResposta(i, botao) {
     mostrarPergunta();
   }, 2000);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  mostrarPergunta();
-});
