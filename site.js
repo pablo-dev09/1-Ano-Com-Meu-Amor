@@ -17,9 +17,8 @@ const frases = [
 ];
 
 let fraseIndex = 0;
-
-// Carrossel com 100%
 let slideIndex = 0;
+let perguntaIndex = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
   // Botão de frases
@@ -45,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Estrelas animadas
+  // Fundo de estrelas
   const canvas = document.getElementById('star-canvas');
   const ctx = canvas.getContext('2d');
   let stars = [];
@@ -54,9 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
-
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
 
   function createStars() {
     stars = [];
@@ -87,6 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(animateStars);
   }
 
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
   createStars();
   animateStars();
 
@@ -95,6 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const images = document.querySelectorAll('.carousel-slide img');
   const prevBtn = document.querySelector('.prev');
   const nextBtn = document.querySelector('.next');
+
+  function updateCarousel() {
+    slide.style.transform = `translateX(-${slideIndex * 100}%)`;
+  }
 
   if (nextBtn && prevBtn && slide && images.length > 0) {
     nextBtn.addEventListener('click', () => {
@@ -107,30 +109,26 @@ document.addEventListener("DOMContentLoaded", () => {
       updateCarousel();
     });
 
-    function updateCarousel() {
-      slide.style.transform = `translateX(-${slideIndex * 100}%)`;
-    }
-
     updateCarousel();
   }
 
-  // Contador de dias juntos
+  // Contador de dias
   const inicio = new Date("2024-07-09");
   const hoje = new Date();
   const dias = Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24));
   const contadorSpan = document.getElementById("contadorDias");
 
-  let atual = 0;
+  let diaAtual = 0;
   const intervalo = setInterval(() => {
-    if (atual < dias) {
-      atual++;
-      contadorSpan.textContent = atual;
+    if (diaAtual < dias) {
+      diaAtual++;
+      contadorSpan.textContent = diaAtual;
     } else {
       clearInterval(intervalo);
     }
   }, 25);
 
-  // Quiz
+  // Inicia quiz
   mostrarPergunta();
 });
 
@@ -158,10 +156,8 @@ const quizPerguntas = [
   }
 ];
 
-let atual = 0;
-
 function mostrarPergunta() {
-  const q = quizPerguntas[atual];
+  const q = quizPerguntas[perguntaIndex];
   document.getElementById("pergunta").textContent = q.pergunta;
   const opcoes = document.getElementById("opcoes");
   opcoes.innerHTML = "";
@@ -174,7 +170,7 @@ function mostrarPergunta() {
 }
 
 function verificarResposta(i, botao) {
-  const correta = quizPerguntas[atual].correta;
+  const correta = quizPerguntas[perguntaIndex].correta;
   const feedback = document.getElementById("feedback");
 
   if (i === correta) {
@@ -188,7 +184,7 @@ function verificarResposta(i, botao) {
   }
 
   setTimeout(() => {
-    atual = (atual + 1) % quizPerguntas.length;
+    perguntaIndex = (perguntaIndex + 1) % quizPerguntas.length;
     feedback.textContent = "";
     mostrarPergunta();
   }, 2000);
