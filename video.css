@@ -1,65 +1,69 @@
- /* Estilos personalizados para o site */
- body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    overflow: hidden; /* Esconde a barra de rolagem se os girassóis ultrapassarem */
-    background-color: #1a202c; /* Fundo escuro */
-    color: #ffffff; /* Texto branco padrão */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    position: relative; /* Necessário para posicionar o canvas */
+/* Reset básico */
+* {
+  box-sizing: border-box;
 }
 
-/* O canvas para os girassóis animados */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #1a202c;
+  color: #ffffff;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+/* Canvas de fundo animado */
 #sunflowerCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Garante que o canvas fique no fundo */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
 }
 
-/* Estilo para o conteúdo principal */
+/* Container do vídeo */
 .content-wrapper {
-    position: relative;
-    z-index: 1; /* Garante que o conteúdo fique acima do canvas */
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente para o conteúdo */
-    padding: 2rem;
-    border-radius: 1rem;
-    text-align: center;
-    max-width: 90%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 5vh auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-h1 {
-    color: #4299e1; /* Azul vibrante para o título */
+/* Player de vídeo */
+.video-player {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  max-height: 70vh;
+  object-fit: contain;
 }
 
-p {
-    color: #a0aec0; /* Tom de cinza claro para o parágrafo */
+/* Ajuste extra para iPhone 15 Pro Max e Galaxy A54 */
+@media screen and (max-width: 480px) {
+  .content-wrapper {
+    margin: 2vh auto;
+    padding: 0.75rem;
+  }
+
+  .video-player {
+    max-height: 60vh;
+  }
 }
 
-.button {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #4299e1; /* Azul para o botão */
-    color: #ffffff;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.button:hover {
-    background-color: #3182ce; /* Azul mais escuro ao passar o mouse */
-}
-
-/* Responsividade com Tailwind CSS */
+/* Ajuste para tablets ou telas maiores */
 @media (min-width: 768px) {
-    .content-wrapper {
-        max-width: 600px;
-    }
+  .content-wrapper {
+    padding: 2rem;
+  }
 }
