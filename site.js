@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (
       clickSound &&
       (e.target.tagName === "BUTTON" ||
-       e.target.closest("button") ||
-       e.target.classList.contains("footer-link"))
+        e.target.closest("button") ||
+        e.target.classList.contains("footer-link"))
     ) {
       clickSound.currentTime = 0;
       clickSound.play();
@@ -88,24 +88,25 @@ document.addEventListener("DOMContentLoaded", () => {
   createStars();
   animateStars();
 
-  // Carrossel
+  // --- Carrossel corrigido ---
   const slide = document.querySelector('.carousel-slide');
   const images = document.querySelectorAll('.carousel-slide img');
   const prevBtn = document.querySelector('.prev');
   const nextBtn = document.querySelector('.next');
+  const total = images.length;
 
   function updateCarousel() {
     slide.style.transform = `translateX(-${slideIndex * 100}%)`;
   }
 
-  if (nextBtn && prevBtn && slide && images.length > 0) {
-    nextBtn.addEventListener('click', () => {
-      slideIndex = (slideIndex + 1) % images.length;
+  if (slide && images.length > 0 && prevBtn && nextBtn) {
+    prevBtn.addEventListener("click", () => {
+      slideIndex = (slideIndex - 1 + total) % total;
       updateCarousel();
     });
 
-    prevBtn.addEventListener('click', () => {
-      slideIndex = (slideIndex - 1 + images.length) % images.length;
+    nextBtn.addEventListener("click", () => {
+      slideIndex = (slideIndex + 1) % total;
       updateCarousel();
     });
 
@@ -132,7 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
   mostrarPergunta();
 });
 
-// Quiz
+// ---------------- Quiz ----------------
+
 const quizPerguntas = [
   {
     pergunta: "Qual a comida favorita do Pablo?",
@@ -161,6 +163,7 @@ function mostrarPergunta() {
   document.getElementById("pergunta").textContent = q.pergunta;
   const opcoes = document.getElementById("opcoes");
   opcoes.innerHTML = "";
+
   q.opcoes.forEach((opc, i) => {
     const btn = document.createElement("button");
     btn.textContent = opc;
