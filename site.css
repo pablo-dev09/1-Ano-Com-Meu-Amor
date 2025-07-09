@@ -1,0 +1,66 @@
+
+/* RESET E CONFIGURAÇÃO BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  color: #ffffff;
+  background-color: transparent;
+  line-height: 1.6;
+  transition: all 0.3s ease-in-out;
+  overflow-x: hidden;
+}
+
+#star-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0d0d1a;
+  z-index: -1;
+}
+
+header {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  animation: slideDown 0.6s ease-out;
+  text-align: center;
+}
+
+@keyframes slideDown {
+  from { top: -60px; opacity: 0; }
+  to { top: 0; opacity: 1; }
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 1rem;
+  padding: 0 10px;
+}
+
+nav ul li a {
+  color: #00bfff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: clamp(14px, 4vw, 18px);
+}
+
+nav ul li a:hover {
+  color: #ffffff;
+}
+
+/* ... restante do CSS omitido para brevidade ... */
