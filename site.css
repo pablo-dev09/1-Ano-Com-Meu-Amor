@@ -1,3 +1,4 @@
+/* RESET E CONFIGURAÇÃO BASE */
 * {
   margin: 0;
   padding: 0;
@@ -42,11 +43,9 @@ header {
 nav ul {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   list-style: none;
-}
-
-nav ul li {
-  margin: 0 1.5rem;
+  gap: 1rem;
 }
 
 nav ul li a {
@@ -54,6 +53,7 @@ nav ul li a {
   text-decoration: none;
   font-weight: bold;
   position: relative;
+  font-size: 1rem;
 }
 
 nav ul li a:hover {
@@ -65,7 +65,7 @@ nav ul li a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 20px 60px;
+  padding: clamp(80px, 10vw, 120px) 20px 60px;
   text-align: center;
   opacity: 0;
   transform: translateY(50px);
@@ -83,6 +83,7 @@ nav ul li a:hover {
 
 .content {
   max-width: 700px;
+  width: 100%;
 }
 
 button {
@@ -106,7 +107,7 @@ footer {
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   text-align: center;
-  padding: 30px 0;
+  padding: 30px 15px;
   width: 100%;
 }
 
@@ -117,8 +118,8 @@ footer {
   border-radius: 12px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 18px;
-  margin: 0 12px;
+  font-size: 1rem;
+  margin: 10px auto;
   display: inline-block;
   box-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -132,13 +133,13 @@ footer {
 
 .back-to-top {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 20px;
+  right: 20px;
   background-color: #00bfff;
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,7 +151,7 @@ footer {
 }
 
 .seta-img {
-  width: 100%;
+  width: 90%;
   height: auto;
   filter: brightness(0) invert(1);
 }
@@ -160,97 +161,18 @@ footer {
   background-color: #3399ff;
 }
 
-/* Carrossel */
-.carousel-container {
-  position: relative;
-  width: 480px;
-  height: 320px;
-  overflow: hidden;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
-  flex-shrink: 0;
-  margin-top: -20vh;
-}
-
-.carousel-slide {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  height: 100%;
-}
-
-.carousel-slide img {
-  width: 480px;
-  height: 320px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: white;
-  border: none;
-  font-size: 30px;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 50%;
-  z-index: 10;
-  box-shadow: 0 0 8px #00bfff;
-  transition: transform 0.2s;
-}
-
-.prev:hover, .next:hover {
-  transform: translateY(-50%) scale(1.1);
-}
-
-.prev {
-  left: 10px;
-}
-
-.next {
-  right: 10px;
-}
-
-.about-layout {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 80px 60px;
-  gap: 40px;
-}
-
-.frase-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  margin-top: -20vh;
-}
-
-#fraseBtn {
-  background-color: #00bfff;
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 20px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  min-width: 280px;
-  text-align: center;
-}
+/* CARDS */
 .card-row {
   display: flex;
   justify-content: center;
-  gap: 30px;
   flex-wrap: wrap;
-  margin-top: 80px;
+  gap: 20px;
+  margin-top: 60px;
 }
 
 .card {
-  width: 260px;
+  width: 90%;
+  max-width: 260px;
   height: 380px;
   position: relative;
   border-radius: 20px;
@@ -291,35 +213,102 @@ footer {
 }
 
 .contador-container {
-  margin-top: 60px;
-  margin-left: 5vh;
-  font-size: 28px;
+  margin-top: 40px;
+  font-size: clamp(20px, 4vw, 28px);
   font-weight: bold;
   color: #00aaff;
   text-align: center;
   animation: fadeInUp 1s ease-out;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 audio {
-  margin-left: 20px;
+  margin: 15px auto 0;
+  display: block;
   height: 40px;
-  vertical-align: middle;
   filter: drop-shadow(0 0 5px #00aaff);
 }
 
-#quiz{
-  margin-top: -30vh;
+/* CARROSSEL E SOBRE */
+.carousel-container {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+  margin: 0 auto;
 }
+
+.carousel-slide {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 0 8px #00bfff;
+  transition: transform 0.2s;
+}
+
+.prev:hover, .next:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.about-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 60px 20px;
+}
+
+.frase-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+#fraseBtn {
+  background-color: #00bfff;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+}
+
+/* QUIZ */
+#quiz {
+  margin-top: 0;
+  width: 100%;
+}
+
 #perguntaBox {
   background: rgba(255, 255, 255, 0.07);
   padding: 30px;
@@ -352,19 +341,21 @@ audio {
 #opcoes button:hover {
   background-color: #00aaff;
   transform: scale(1.05);
+  color: #fff;
 }
 
 #feedback {
   font-size: 18px;
   margin-top: 20px;
-  transition: opacity 0.3s ease;
   font-weight: bold;
 }
+
+/* MAPA DOS SONHOS */
 .mapa-sonhos {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
   justify-content: center;
+  gap: 20px;
   margin-top: 40px;
 }
 
@@ -373,7 +364,8 @@ audio {
   border: 2px dashed #00aaff;
   padding: 20px;
   border-radius: 15px;
-  width: 220px;
+  width: 100%;
+  max-width: 220px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -390,6 +382,7 @@ audio {
 .destino p {
   color: #f4f4f4;
   font-size: 15px;
+  text-align: center;
 }
 
 .pin {
@@ -407,116 +400,4 @@ audio {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
-}
-@media (max-width: 1024px) {
-  .carousel-container {
-    width: 90vw;
-    height: auto;
-  }
-
-  .carousel-slide img {
-    width: 100%;
-    height: auto;
-  }
-
-  .about-layout {
-    flex-direction: column;
-    gap: 20px;
-    padding: 40px 20px;
-  }
-
-  .frase-container {
-    margin-top: 0;
-  }
-
-  .mapa-sonhos {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .destino {
-    width: 90%;
-    text-align: center;
-  }
-}
-
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav ul li {
-    margin: 0.5rem 0;
-  }
-
-  .content {
-    padding: 0 10px;
-  }
-
-  #perguntaBox {
-    max-width: 90%;
-  }
-
-  .lista-lugares li {
-    font-size: 16px;
-  }
-
-  footer {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  audio {
-    margin-left: 0;
-    margin-top: 15px;
-  }
-
-  .back-to-top {
-    bottom: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-  }
-
-  .back-to-top img {
-    width: 90%;
-  }
-
-  #opcoes button {
-    width: 100%;
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 430px) {
-  h1, h2, h3 {
-    font-size: 1.5rem;
-  }
-
-  p, button, .footer-link {
-    font-size: 1rem;
-  }
-
-  .carousel-container {
-    width: 100%;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .carousel-slide {
-    flex-direction: column;
-  }
-
-  .destino p {
-    font-size: 14px;
-  }
-
-  .section {
-    padding: 80px 10px 60px;
-  }
-
-  .mapa-sonhos {
-    padding: 0 10px;
-  }
 }
