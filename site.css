@@ -451,12 +451,14 @@ audio {
 
 @media (max-width: 768px) {
   nav ul {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row; /* <- Alinhar lado a lado */
+    justify-content: center;
+    flex-wrap: wrap;     /* permite quebrar se não couber */
+    gap: 12px;
   }
 
   nav ul li {
-    margin: 0.5rem 0;
+    margin: 0.5rem;
   }
 
   .content {
